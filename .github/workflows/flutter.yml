@@ -25,6 +25,10 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.10.1'
+      - name: Doctor
+        run: flutter doctor
+        working-directory: ./flutter
+
       - name: Install dependencies
         run: flutter pub get
         working-directory: ./flutter
