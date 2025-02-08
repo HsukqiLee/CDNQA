@@ -22,7 +22,7 @@ jobs:
           java-version: '17'
 
       - name: Clean up old Android SDK
-        run: rm -rf $ANDROID_SDK_ROOT
+        run: sudo rm -rf $ANDROID_SDK_ROOT || true
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
