@@ -21,8 +21,8 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Clean up old Android SDK
-        run: sudo rm -rf $ANDROID_SDK_ROOT || true
+      - name: Set custom Android SDK path
+        run: echo "ANDROID_HOME=$RUNNER_TEMP/android-sdk" >> $GITHUB_ENV
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
@@ -42,7 +42,7 @@ jobs:
         run: git submodule update --init --recursive
 
       - name: Create local.properties
-        run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+        run: echo "sdk.dir=$ANDROID_HOME" > local.properties
 
       - name: Create signing.properties
         run: |
