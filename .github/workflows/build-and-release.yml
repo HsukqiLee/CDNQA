@@ -39,7 +39,7 @@ jobs:
         run: ./gradlew app:assembleMeta-AlphaRelease
 
       - name: Upload Android artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: android-apk
           path: app/build/outputs/apk/metaAlphaRelease/*.apk
