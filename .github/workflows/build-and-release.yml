@@ -29,6 +29,7 @@ jobs:
 
       - name: Create local.properties
         run: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+        working-directory: ./Android-kotlin-Code
 
       - name: Create signing.properties
         run: |
@@ -36,12 +37,14 @@ jobs:
           echo "keystore.password=${{ secrets.KEYSTORE_PASSWORD }}" >> signing.properties
           echo "key.alias=${{ secrets.KEY_ALIAS }}" >> signing.properties
           echo "key.password=${{ secrets.KEY_PASSWORD }}" >> signing.properties
+        working-directory: ./Android-kotlin-Code
 
       - name: Build Android app
         run: ./gradlew app:assembleMeta-AlphaRelease
+        working-directory: ./Android-kotlin-Code
 
       - name: Upload Android artifact
         uses: actions/upload-artifact@v4
         with:
           name: android-apk
-          path: app/build/outputs/apk/metaAlphaRelease/*.apk
+          path: Android-kotlin-Code/app/build/outputs/apk/metaAlphaRelease/*.apk
